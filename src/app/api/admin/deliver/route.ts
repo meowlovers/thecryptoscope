@@ -1,9 +1,8 @@
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import { supabaseAdmin } from "@/lib/supabase-admin";
-
-export const dynamic = "force-dynamic";
 
 async function isAdmin() {
   const cookieStore = await cookies();
@@ -13,45 +12,42 @@ async function isAdmin() {
 export async function POST(req: Request) {
   if (!await isAdmin()) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const formData = await req.formData();
-  const file = formData.get("pdf") as File;
-  const pair = formData.get("pair") as string;
-  const orderIds = JSON.parse(formData.get("orderIds") as string) as string[];
+  const { pair, orderIds, sections } = await req.json();
 
-  if (!file || !pair || !orderIds?.length) {
+  if (!pair || !orderIds?.length || !sections?.length) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
-  // Upload PDF to Supabase Storage
-  const fileName = `${pair}-${Date.now()}.pdf`;
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
+  // Create the analysis record
+  const analysis = await prisma.analysis.create({
+    data: { pair, sections },
+  });
 
-  const { error: uploadError } = await supabaseAdmin.storage
-    .from("analyses")
-    .upload(fileName, buffer, { contentType: "application/pdf", upsert: true });
+  // Get all user IDs for these orders (to create notifications)
+  const orders = await prisma.order.findMany({
+    where: { id: { in: orderIds } },
+    select: { id: true, userId: true, pair: true, analysisType: true },
+  });
 
-  if (uploadError) {
-    console.error("Upload error:", uploadError);
-    return NextResponse.json({ error: "PDF upload failed" }, { status: 500 });
-  }
-
-  // Get public URL
-  const { data: urlData } = supabaseAdmin.storage
-    .from("analyses")
-    .getPublicUrl(fileName);
-
-  const pdfUrl = urlData.publicUrl;
-
-  // Mark all orders as delivered
+  // Mark all orders as delivered and link the analysis
   await prisma.order.updateMany({
     where: { id: { in: orderIds } },
     data: {
       status: "DELIVERED",
-      pdfUrl,
+      analysisId: analysis.id,
       deliveredAt: new Date(),
     },
   });
 
-  return NextResponse.json({ ok: true, pdfUrl, delivered: orderIds.length });
+  // Create a notification for each affected user
+  await prisma.notification.createMany({
+    data: orders.map((o) => ({
+      userId: o.userId,
+      title: `Your ${o.pair} analysis is ready`,
+      message: `Your ${o.analysisType} analysis for ${o.pair} has been delivered. View it in your dashboard.`,
+      link: "/dashboard",
+    })),
+  });
+
+  return NextResponse.json({ ok: true, analysisId: analysis.id, delivered: orderIds.length });
 }

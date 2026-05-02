@@ -9,14 +9,15 @@ datasource db {
 
 // Synced from Clerk on first login
 model User {
-  id            String        @id @default(cuid())
-  clerkId       String        @unique
-  email         String        @unique
-  createdAt     DateTime      @default(now())
+  id            String         @id @default(cuid())
+  clerkId       String         @unique
+  email         String         @unique
+  createdAt     DateTime       @default(now())
 
   balance       Balance?
   transactions  Transaction[]
   orders        Order[]
+  notifications Notification[]
 }
 
 // One balance row per user
@@ -64,11 +65,35 @@ model Order {
   notes        String?
   status       OrderStatus @default(PENDING)
   amountPaid   Float       // USDT
-  pdfUrl       String?     // URL to the delivered PDF
-  deliveredAt  DateTime?   // when it was delivered
+  pdfUrl       String?     // legacy PDF URL
+  analysisId   String?     // link to rich analysis
+  deliveredAt  DateTime?
   createdAt    DateTime    @default(now())
 
   user         User        @relation(fields: [userId], references: [id])
+  analysis     Analysis?   @relation(fields: [analysisId], references: [id])
+}
+
+// Rich analysis content delivered to clients
+model Analysis {
+  id        String   @id @default(cuid())
+  pair      String
+  sections  Json     // AnalysisSection[]
+  createdAt DateTime @default(now())
+  orders    Order[]
+}
+
+// In-app notifications for users
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 enum OrderStatus {

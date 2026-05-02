@@ -30,7 +30,7 @@ export default async function DashboardPage() {
         select: {
           id: true, pair: true, analysisType: true,
           status: true, amountPaid: true, createdAt: true,
-          pdfUrl: true, deliveredAt: true,
+          pdfUrl: true, analysisId: true, deliveredAt: true,
         }
       },
     },

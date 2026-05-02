@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Wallet, Plus, ArrowUpRight, ArrowDownLeft, Clock, CheckCircle, Package, TrendingUp, Download } from "lucide-react";
+import AnalysisView from "./AnalysisView";
 
 interface Transaction {
   id: string;
@@ -22,6 +23,7 @@ interface Order {
   amountPaid: number;
   createdAt: Date;
   pdfUrl?: string | null;
+  analysisId?: string | null;
   deliveredAt?: Date | null;
 }
 
@@ -151,7 +153,9 @@ export default function DashboardClient({ balance, transactions, orders, email }
                     <span className={`px-2.5 py-1 rounded-lg text-xs font-semibold ${ORDER_STATUS_STYLE[order.status]}`}>
                       {ORDER_STATUS_LABEL[order.status]}
                     </span>
-                    {order.status === "DELIVERED" && order.pdfUrl ? (
+                    {order.status === "DELIVERED" && order.analysisId ? (
+                      <AnalysisView orderId={order.id} pair={order.pair} />
+                    ) : order.status === "DELIVERED" && order.pdfUrl ? (
                       <a
                         href={order.pdfUrl}
                         target="_blank"

@@ -8,6 +8,7 @@ import { Menu, X, TrendingUp, LayoutDashboard } from "lucide-react";
 import { useUser, UserButton } from "@/lib/clerk-safe";
 import { useClerk } from "@clerk/nextjs";
 import { LogOut } from "lucide-react";
+import NotificationBell from "./NotificationBell";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -73,6 +74,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             {isSignedIn ? (
               <>
+                <NotificationBell />
                 <Link
                   href="/dashboard"
                   className={cn(
