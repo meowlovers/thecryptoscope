@@ -49,15 +49,30 @@ function CoinCard({ coin, index }: { coin: CoinPrice; index: number }) {
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-2.5">
           <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center text-sm font-black shrink-0"
+            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 overflow-hidden"
             style={{
               backgroundColor: coin.color + "18",
-              color: coin.color,
               border: `1px solid ${coin.color}35`,
               boxShadow: `0 0 12px ${coin.color}15`,
             }}
           >
-            {coin.ticker.slice(0, 1)}
+            <img
+              src={`https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/${coin.ticker.toLowerCase()}.svg`}
+              alt={coin.ticker}
+              width={24}
+              height={24}
+              onError={(e) => {
+                const target = e.currentTarget;
+                target.style.display = "none";
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.style.color = coin.color;
+                  parent.style.fontSize = "14px";
+                  parent.style.fontWeight = "900";
+                  parent.textContent = coin.ticker.slice(0, 1);
+                }
+              }}
+            />
           </div>
           <div>
             <p className="text-[#e8f0f7] text-sm font-bold leading-tight">{coin.ticker}</p>
@@ -267,7 +282,7 @@ export default function MarketOverview() {
               href="/order"
               className="group inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-[#00d4aa] to-[#0ea5e9] text-white font-semibold text-sm hover:opacity-90 transition-all shadow-lg hover:shadow-[0_0_24px_rgba(0,212,170,0.25)]"
             >
-              Order Analysis — $5
+              Order Analysis — from $9
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
