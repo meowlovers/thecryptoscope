@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
+export const dynamic = "force-dynamic";
+
 async function isAdmin() {
   const cookieStore = await cookies();
   return cookieStore.get("admin_token")?.value === process.env.ADMIN_PASSWORD;
