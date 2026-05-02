@@ -187,15 +187,33 @@ export default function DashboardClient({ balance, transactions, orders, email }
                 <div key={tx.id} className="bg-[#0d1821] border border-[#1a2d3d] rounded-xl px-5 py-4 flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
                     <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                      tx.type === "TOPUP" ? "bg-emerald-400/10 border border-emerald-400/20" : "bg-red-400/10 border border-red-400/20"
+                      tx.type === "PURCHASE"
+                        ? "bg-red-400/10 border border-red-400/20"
+                        : tx.status === "CONFIRMED"
+                        ? "bg-emerald-400/10 border border-emerald-400/20"
+                        : tx.status === "FAILED"
+                        ? "bg-red-400/10 border border-red-400/20"
+                        : "bg-yellow-400/10 border border-yellow-400/20"
                     }`}>
-                      {tx.type === "TOPUP"
+                      {tx.type === "PURCHASE"
+                        ? <ArrowUpRight className="w-4 h-4 text-red-400" />
+                        : tx.status === "CONFIRMED"
                         ? <ArrowDownLeft className="w-4 h-4 text-emerald-400" />
-                        : <ArrowUpRight className="w-4 h-4 text-red-400" />
+                        : tx.status === "FAILED"
+                        ? <ArrowDownLeft className="w-4 h-4 text-red-400" />
+                        : <Clock className="w-4 h-4 text-yellow-400" />
                       }
                     </div>
                     <div>
-                      <p className="text-[#e8f0f7] text-sm font-semibold">{tx.type === "TOPUP" ? "Credits Added" : "Purchase"}</p>
+                      <p className="text-[#e8f0f7] text-sm font-semibold">
+                        {tx.type === "PURCHASE"
+                          ? "Purchase"
+                          : tx.status === "CONFIRMED"
+                          ? "Credits Added"
+                          : tx.status === "FAILED"
+                          ? "Payment Failed"
+                          : "Awaiting Payment"}
+                      </p>
                       <p className="text-[#475569] text-xs">{tx.note ?? formatDate(tx.createdAt)}</p>
                     </div>
                   </div>
@@ -203,10 +221,20 @@ export default function DashboardClient({ balance, transactions, orders, email }
                     {tx.status === "CONFIRMED"
                       ? <CheckCircle className="w-4 h-4 text-emerald-400" />
                       : tx.status === "PENDING"
-                      ? <Clock className="w-4 h-4 text-yellow-400" />
+                      ? <span className="text-[10px] font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 px-2 py-0.5 rounded-md">PENDING</span>
+                      : tx.status === "FAILED"
+                      ? <span className="text-[10px] font-semibold text-red-400 bg-red-400/10 border border-red-400/20 px-2 py-0.5 rounded-md">FAILED</span>
                       : null
                     }
-                    <span className={`text-sm font-mono font-semibold ${tx.type === "TOPUP" ? "text-emerald-400" : "text-red-400"}`}>
+                    <span className={`text-sm font-mono font-semibold ${
+                      tx.type === "PURCHASE"
+                        ? "text-red-400"
+                        : tx.status === "CONFIRMED"
+                        ? "text-emerald-400"
+                        : tx.status === "FAILED"
+                        ? "text-red-400/50 line-through"
+                        : "text-yellow-400/70"
+                    }`}>
                       {tx.type === "TOPUP" ? "+" : "-"}${tx.amount.toFixed(2)}
                     </span>
                   </div>
