@@ -36,14 +36,26 @@ export default async function DashboardPage() {
     },
   });
 
+  // Serialize Date objects → strings so they can be passed to client components
+  const orders = user.orders.map((o) => ({
+    ...o,
+    createdAt: o.createdAt.toISOString(),
+    deliveredAt: o.deliveredAt ? o.deliveredAt.toISOString() : null,
+  }));
+
+  const transactions = user.transactions.map((t) => ({
+    ...t,
+    createdAt: t.createdAt.toISOString(),
+  }));
+
   return (
     <>
       <Navbar />
       <main className="flex-1 pt-16 pb-20">
         <DashboardClient
           balance={user.balance?.amount ?? 0}
-          transactions={user.transactions}
-          orders={user.orders}
+          transactions={transactions}
+          orders={orders}
           email={email}
         />
       </main>

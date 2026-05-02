@@ -12,7 +12,7 @@ interface Transaction {
   amount: number;
   status: "PENDING" | "CONFIRMED" | "FAILED";
   note: string | null;
-  createdAt: Date;
+  createdAt: string;
 }
 
 interface Order {
@@ -21,10 +21,10 @@ interface Order {
   analysisType: string;
   status: "PENDING" | "IN_PROGRESS" | "DELIVERED" | "CANCELLED";
   amountPaid: number;
-  createdAt: Date;
+  createdAt: string;
   pdfUrl?: string | null;
   analysisId?: string | null;
-  deliveredAt?: Date | null;
+  deliveredAt?: string | null;
 }
 
 interface Props {
@@ -48,7 +48,7 @@ const ORDER_STATUS_LABEL: Record<Order["status"], string> = {
   CANCELLED:   "Cancelled",
 };
 
-function formatDate(d: Date) {
+function formatDate(d: string | Date) {
   return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
