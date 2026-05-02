@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Menu, X, TrendingUp, LayoutDashboard } from "lucide-react";
 import { useUser, UserButton } from "@/lib/clerk-safe";
+import { useClerk } from "@clerk/nextjs";
+import { LogOut } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -19,6 +21,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const { isSignedIn } = useUser();
+  const { signOut } = useClerk();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -83,6 +86,13 @@ export default function Navbar() {
                   Dashboard
                 </Link>
                 <UserButton appearance={{ elements: { avatarBox: "w-8 h-8" } }} />
+                <button
+                  onClick={() => signOut({ redirectUrl: "/" })}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-[#94a3b8] hover:text-red-400 hover:bg-red-400/10 transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out
+                </button>
               </>
             ) : (
               <>
@@ -133,14 +143,23 @@ export default function Navbar() {
               </Link>
             ))}
             {isSignedIn && (
-              <Link
-                href="/dashboard"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-[#94a3b8] hover:text-[#e8f0f7] hover:bg-[#0d1821] transition-colors"
-              >
-                <LayoutDashboard className="w-4 h-4" />
-                Dashboard
-              </Link>
+              <>
+                <Link
+                  href="/dashboard"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-[#94a3b8] hover:text-[#e8f0f7] hover:bg-[#0d1821] transition-colors"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => { setIsOpen(false); signOut({ redirectUrl: "/" }); }}
+                  className="flex items-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-[#94a3b8] hover:text-red-400 hover:bg-red-400/10 transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out
+                </button>
+              </>
             )}
             <div className="pt-2 space-y-2">
               {!isSignedIn && (
