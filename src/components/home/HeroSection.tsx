@@ -54,18 +54,18 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
         >
           <Link
             href="/order"
-            className="group flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-[#00d4aa] to-[#0ea5e9] text-white font-semibold text-base hover:opacity-90 transition-all shadow-lg hover:shadow-[0_0_32px_rgba(0,212,170,0.25)]"
+            className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#00d4aa] to-[#0ea5e9] text-white font-semibold text-base hover:opacity-90 transition-all shadow-lg hover:shadow-[0_0_32px_rgba(0,212,170,0.25)]"
           >
             Order Analysis Now
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
             href="#how-it-works"
-            className="flex items-center gap-2 px-8 py-4 rounded-xl border border-[#1a2d3d] text-[#94a3b8] font-semibold text-base hover:border-[#00d4aa]/40 hover:text-[#e8f0f7] transition-all"
+            className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 rounded-xl border border-[#1a2d3d] text-[#94a3b8] font-semibold text-base hover:border-[#00d4aa]/40 hover:text-[#e8f0f7] transition-all"
           >
             How It Works
           </Link>

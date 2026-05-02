@@ -29,7 +29,7 @@ export default function CTASection() {
               Stop Guessing. Start Knowing.
             </h2>
             <p className="text-[#64748b] text-lg mb-8 max-w-xl mx-auto">
-              Order a professional analysis of any crypto pair for just $5.
+              Order a professional analysis of any crypto pair from just $9.
               Your next move deserves a solid foundation.
             </p>
 
@@ -37,7 +37,7 @@ export default function CTASection() {
               href="/order"
               className="group inline-flex items-center gap-2 px-10 py-4 rounded-xl bg-gradient-to-r from-[#00d4aa] to-[#0ea5e9] text-white font-bold text-lg hover:opacity-90 transition-all shadow-lg hover:shadow-[0_0_40px_rgba(0,212,170,0.3)]"
             >
-              Order Analysis — $5
+              Order Analysis — from $9
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
