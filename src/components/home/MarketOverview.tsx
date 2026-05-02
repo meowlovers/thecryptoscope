@@ -103,7 +103,7 @@ function CoinCard({ coin, index }: { coin: CoinPrice; index: number }) {
       {/* Analyze button */}
       <Link
         href={`/order?pair=${coin.symbol}`}
-        className="mt-4 flex items-center justify-center gap-1.5 w-full py-2 rounded-xl border border-[#1a2d3d] text-[#64748b] text-xs font-semibold hover:border-[#00d4aa]/40 hover:text-[#00d4aa] hover:bg-[#00d4aa]/5 transition-all opacity-0 group-hover:opacity-100"
+        className="mt-4 flex items-center justify-center gap-1.5 w-full py-2 rounded-xl border border-[#1a2d3d] text-[#64748b] text-xs font-semibold hover:border-[#00d4aa]/40 hover:text-[#00d4aa] hover:bg-[#00d4aa]/5 transition-all"
       >
         Analyze {coin.ticker}
         <ArrowRight className="w-3 h-3" />
