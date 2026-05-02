@@ -9,8 +9,8 @@ export async function POST(req: Request) {
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { amount } = await req.json();
-  if (!amount || amount < 9) {
-    return NextResponse.json({ error: "Minimum top-up is $9 USDT" }, { status: 400 });
+  if (!amount || amount < 10) {
+    return NextResponse.json({ error: "Minimum top-up is $10 USDT" }, { status: 400 });
   }
 
   // Find user in DB

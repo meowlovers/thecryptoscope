@@ -32,8 +32,8 @@ export default function TopUpClient() {
 
   async function handleCreatePayment() {
     setError("");
-    if (!finalAmount || finalAmount < 9) {
-      setError("Minimum top-up is $9 USDT");
+    if (!finalAmount || finalAmount < 10) {
+      setError("Minimum top-up is $10 USDT");
       return;
     }
     setLoading(true);
@@ -125,7 +125,7 @@ export default function TopUpClient() {
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#475569] text-sm font-bold">$</span>
                   <input
                     type="number"
-                    min="9"
+                    min="10"
                     step="1"
                     value={custom}
                     onChange={(e) => { setCustom(e.target.value); setAmount(0); }}
@@ -135,6 +135,11 @@ export default function TopUpClient() {
                   <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#475569] text-xs">USDT</span>
                 </div>
               </div>
+
+              <p className="text-[#475569] text-xs flex items-center gap-1.5">
+                <AlertCircle className="w-3 h-3 text-yellow-400 shrink-0" />
+                <span>Minimum deposit is <span className="text-yellow-400 font-semibold">$10 USDT</span></span>
+              </p>
 
               <div className="bg-[#050a0e] rounded-xl p-4 flex items-center justify-between">
                 <p className="text-[#64748b] text-sm">You will receive</p>
