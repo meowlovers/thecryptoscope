@@ -106,7 +106,7 @@ export default function AboutPage() {
               </h2>
               <p className="text-[#64748b] text-base leading-relaxed max-w-2xl">
                 Institutional-grade research has historically been reserved for hedge funds
-                and high-net-worth investors. TheChartScope changes that. For just $5, any
+                and high-net-worth investors. TheChartScope changes that. From just $9, any
                 trader — from beginner to professional — can access the same depth of
                 analysis that institutional desks use to make decisions.
               </p>

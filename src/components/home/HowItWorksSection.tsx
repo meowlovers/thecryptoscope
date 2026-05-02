@@ -16,7 +16,7 @@ const steps = [
     icon: CreditCard,
     title: "Pay Securely in Crypto",
     description:
-      "Pay just $5 in USDT, BTC, ETH, or other supported cryptocurrencies. Fast, borderless, and fully secure.",
+      "Pay from $9 in USDT, BTC, ETH, or other supported cryptocurrencies. Fast, borderless, and fully secure.",
   },
   {
     step: "03",

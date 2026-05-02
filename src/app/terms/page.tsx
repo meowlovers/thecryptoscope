@@ -26,7 +26,7 @@ export default function TermsPage() {
     {
       title: "4. Payment & Delivery",
       content:
-        "Payment of $5 USD equivalent in cryptocurrency is required before analysis begins. Delivery is within 24–48 hours of payment confirmation. Due to the nature of digital work, all sales are final once the analysis has been delivered.",
+        "Payment from $9 USD equivalent in cryptocurrency is required before analysis begins. Delivery is within 24–48 hours of payment confirmation. Due to the nature of digital work, all sales are final once the analysis has been delivered.",
     },
     {
       title: "5. No Refund Policy",

@@ -40,7 +40,7 @@ const testimonials = [
     name: "James T.",
     role: "Crypto Enthusiast",
     content:
-      "I've bought analysis services for $50+ and gotten less than this. At $5, TheChartScope is an absolute steal. Already ordered three times.",
+      "I've bought analysis services for $50+ and gotten less than this. At $9, TheChartScope is an absolute steal. Already ordered three times.",
     rating: 5,
     pair: "ADAUSDT",
   },

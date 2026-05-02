@@ -42,7 +42,7 @@ const faqCategories = [
       {
         question: "How do I place an order?",
         answer:
-          "Click 'Order Analysis' from the homepage or navigation menu. Fill in the form with your trading pair, analysis type, and email. Then complete the $5 cryptocurrency payment. That's it — we take it from there.",
+          "Click 'Order Analysis' from the homepage or navigation menu. Fill in the form with your trading pair, analysis type, and email. Then complete the cryptocurrency payment (from $9). That's it — we take it from there.",
       },
       {
         question: "How long does delivery take?",
@@ -67,7 +67,7 @@ const faqCategories = [
       {
         question: "How much does one analysis cost?",
         answer:
-          "Each analysis costs $5 USD equivalent, paid in cryptocurrency. There are no subscriptions, no hidden fees, and no recurring charges. You pay per analysis, when you need one.",
+          "Analysis starts from $9 USD equivalent, paid in cryptocurrency. Technical and Fundamental analyses are $9, Combined is $15. There are no subscriptions, no hidden fees, and no recurring charges. You pay per analysis, when you need one.",
       },
       {
         question: "What cryptocurrencies do you accept?",
@@ -164,7 +164,7 @@ export default function FAQPage() {
                 href="/order"
                 className="group flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#00d4aa] to-[#0ea5e9] text-white font-semibold text-sm hover:opacity-90 transition-all shadow-lg"
               >
-                Order Analysis — $5
+                Order Analysis — from $9
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>

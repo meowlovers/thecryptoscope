@@ -97,7 +97,7 @@ export default function DashboardClient({ balance, transactions, orders, email }
           <div>
             <TrendingUp className="w-5 h-5 text-[#00d4aa] mb-2" />
             <p className="text-[#e8f0f7] text-sm font-semibold">Order Analysis</p>
-            <p className="text-[#64748b] text-xs mt-1">From $5 — deducted from your balance</p>
+            <p className="text-[#64748b] text-xs mt-1">From $9 — deducted from your balance</p>
           </div>
           <Link
             href="/order"

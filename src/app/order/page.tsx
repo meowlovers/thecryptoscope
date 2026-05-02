@@ -7,7 +7,7 @@ import { ShieldCheck, Clock, BarChart2 } from "lucide-react";
 export const metadata: Metadata = {
   title: "Order Analysis — TheChartScope",
   description:
-    "Request a professional technical or fundamental analysis of any cryptocurrency trading pair. Just $5, delivered in 24–48 hours.",
+    "Request a professional technical or fundamental analysis of any cryptocurrency trading pair. From $9, delivered in 24–48 hours.",
 };
 
 interface PageProps {
@@ -34,7 +34,7 @@ export default async function OrderPage({ searchParams }: PageProps) {
                 : "Order Your Analysis"}
             </h1>
             <p className="text-[#64748b] text-base max-w-xl mx-auto">
-              Fill in the details below, pay $5 in crypto, and receive a
+              Fill in the details below, pay from $9 in crypto, and receive a
               comprehensive market analysis report in your inbox within 24–48 hours.
             </p>
           </div>

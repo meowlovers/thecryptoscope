@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "The Chart Scope — The Sharpest View in Crypto",
   description:
-    "Professional cryptocurrency market analysis. No signals, just pure in-depth research. Technical, fundamental & combined analysis from $5 per report.",
+    "Professional cryptocurrency market analysis. No signals, just pure in-depth research. Technical, fundamental & combined analysis from $9 per report.",
   keywords: ["crypto analysis", "bitcoin analysis", "technical analysis", "cryptocurrency", "BTC", "ETH", "chart scope"],
   openGraph: {
     title: "The Chart Scope — The Sharpest View in Crypto",
-    description: "Professional crypto market analysis delivered to your inbox. From $5.",
+    description: "Professional crypto market analysis delivered to your inbox. From $9.",
     type: "website",
     url: "https://thechartscope.com",
   },
