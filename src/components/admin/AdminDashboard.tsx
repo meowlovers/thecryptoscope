@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   TrendingUp, CheckCircle, Clock,
   FileText, LogOut,
-  Ticket, Mail, ChevronRight, X, DollarSign, Loader2
+  Ticket, Mail, ChevronRight, ChevronUp, X, DollarSign, Loader2
 } from "lucide-react";
 import AnalysisEditor from "./AnalysisEditor";
 
