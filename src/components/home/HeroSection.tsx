@@ -24,7 +24,7 @@ export default function HeroSection() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00d4aa]/10 border border-[#00d4aa]/20 text-[#00d4aa] text-sm font-medium mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#00d4aa] animate-pulse" />
-          Professional Crypto Analysis — Starting at $5
+          Professional Crypto Analysis — Starting at $9
         </motion.div>
 
         {/* Headline */}
@@ -54,11 +54,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-[#64748b] text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-[#64748b] text-base sm:text-xl max-w-xl mx-auto mb-10 leading-relaxed"
         >
-          Get institutional-grade technical and fundamental analysis of any
-          cryptocurrency pair — delivered to your inbox within 24–48 hours.
-          Make informed decisions, not emotional trades.
+          Expert crypto analysis delivered to your inbox in 24–48 hours. Make informed decisions, not emotional trades.
         </motion.p>
 
         {/* CTAs */}

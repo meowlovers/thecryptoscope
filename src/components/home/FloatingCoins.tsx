@@ -17,7 +17,7 @@ const coins = [
 
 export default function FloatingCoins() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
+    <div className="absolute inset-0 overflow-hidden pointer-events-none select-none hidden sm:block" aria-hidden>
       {coins.map((coin) => (
         <motion.div
           key={coin.label}
