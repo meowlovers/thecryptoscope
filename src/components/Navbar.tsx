@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Menu, X, TrendingUp, LayoutDashboard } from "lucide-react";
+import { Menu, X, TrendingUp, LayoutDashboard, Wallet } from "lucide-react";
 import { useUser, UserButton } from "@/lib/clerk-safe";
 import { useClerk } from "@clerk/nextjs";
 import { LogOut } from "lucide-react";
@@ -16,6 +16,29 @@ const navLinks = [
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
+
+function BalancePill() {
+  const [balance, setBalance] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch("/api/user/balance")
+      .then((r) => r.json())
+      .then((d) => typeof d.balance === "number" && setBalance(d.balance))
+      .catch(() => {});
+  }, []);
+
+  if (balance === null) return null;
+
+  return (
+    <Link
+      href="/dashboard/topup"
+      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#00d4aa]/10 border border-[#00d4aa]/20 hover:bg-[#00d4aa]/20 transition-colors"
+    >
+      <Wallet className="w-3.5 h-3.5 text-[#00d4aa]" />
+      <span className="text-[#00d4aa] text-sm font-semibold font-mono">${balance.toFixed(2)}</span>
+    </Link>
+  );
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,6 +97,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             {isSignedIn ? (
               <>
+                <BalancePill />
                 <NotificationBell />
                 <Link
                   href="/dashboard"
