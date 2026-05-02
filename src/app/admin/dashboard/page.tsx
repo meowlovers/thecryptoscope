@@ -45,5 +45,10 @@ export default async function AdminDashboardPage() {
     },
   });
 
-  return <AdminDashboard grouped={grouped} delivered={delivered} totalPending={orders.length} />;
+  // Support tickets
+  const tickets = await prisma.ticket.findMany({
+    orderBy: { createdAt: "desc" },
+  });
+
+  return <AdminDashboard grouped={grouped} delivered={delivered} totalPending={orders.length} tickets={tickets} />;
 }

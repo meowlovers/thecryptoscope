@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ContactForm from "@/components/contact/ContactForm";
+import TicketForm from "@/components/contact/TicketForm";
 import { Mail, Clock, MessageCircle } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -83,8 +83,7 @@ export default function ContactPage() {
             {/* Form */}
             <div className="lg:col-span-2">
               <div className="bg-[#0d1821] border border-[#1a2d3d] rounded-2xl p-6 sm:p-8">
-                <h2 className="text-[#e8f0f7] font-bold text-lg mb-6">Send a Message</h2>
-                <ContactForm />
+                <TicketForm />
               </div>
             </div>
           </div>
