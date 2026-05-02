@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Synced from Clerk on first login
+model User {
+  id            String        @id @default(cuid())
+  clerkId       String        @unique
+  email         String        @unique
+  createdAt     DateTime      @default(now())
+
+  balance       Balance?
+  transactions  Transaction[]
+  orders        Order[]
+}
+
+// One balance row per user
+model Balance {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  amount    Float    @default(0) // USDT
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+// Every credit add or purchase deduction
+model Transaction {
+  id          String            @id @default(cuid())
+  userId      String
+  type        TransactionType
+  amount      Float             // USDT
+  status      TransactionStatus @default(PENDING)
+  paymentId   String?           // NOWPayments payment ID
+  note        String?
+  createdAt   DateTime          @default(now())
+
+  user        User              @relation(fields: [userId], references: [id])
+}
+
+enum TransactionType {
+  TOPUP
+  PURCHASE
+}
+
+enum TransactionStatus {
+  PENDING
+  CONFIRMED
+  FAILED
+}
+
+// Analysis orders
+model Order {
+  id           String      @id @default(cuid())
+  userId       String
+  pair         String      // e.g. BTCUSDT
+  analysisType String      // technical | fundamental | combined
+  email        String
+  notes        String?
+  status       OrderStatus @default(PENDING)
+  amountPaid   Float       // USDT
+  pdfUrl       String?     // URL to the delivered PDF
+  deliveredAt  DateTime?   // when it was delivered
+  createdAt    DateTime    @default(now())
+
+  user         User        @relation(fields: [userId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  IN_PROGRESS
+  DELIVERED
+  CANCELLED
+}

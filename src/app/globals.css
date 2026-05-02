@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #050a0e;
+  --color-foreground: #e8f0f7;
+  --color-accent-green: #00d4aa;
+  --color-accent-blue: #0ea5e9;
+  --color-card-bg: #0d1821;
+  --color-card-border: #1a2d3d;
+  --color-muted: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #050a0e;
+  color: #e8f0f7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0d1821; }
+::-webkit-scrollbar-thumb { background: #1a2d3d; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #00d4aa44; }
+
+.glow-green {
+  box-shadow: 0 0 24px rgba(0,212,170,0.18), 0 0 48px rgba(0,212,170,0.06);
+}
+.glow-blue {
+  box-shadow: 0 0 24px rgba(14,165,233,0.18), 0 0 48px rgba(14,165,233,0.06);
+}
+.gradient-text {
+  background: linear-gradient(135deg, #00d4aa 0%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Clerk dark theme overrides ─────────────────────────────────────────── */
+.cl-rootBox { width: 100%; }
+.cl-card {
+  background-color: #0d1821 !important;
+  border: 1px solid #1a2d3d !important;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5) !important;
+}
+.cl-headerTitle,
+.cl-headerSubtitle,
+.cl-formFieldLabel,
+.cl-formFieldHintText,
+.cl-footerActionText,
+.cl-identityPreviewText,
+.cl-alternativeMethodsBlockButton__text,
+.cl-dividerText,
+.cl-formFieldSuccessText {
+  color: #e8f0f7 !important;
+}
+.cl-headerSubtitle,
+.cl-footerActionText,
+.cl-dividerText,
+.cl-formFieldHintText {
+  color: #94a3b8 !important;
+}
+.cl-formFieldInput,
+.cl-phoneInputBox,
+.cl-otpCodeFieldInput {
+  background-color: #050a0e !important;
+  border-color: #1a2d3d !important;
+  color: #e8f0f7 !important;
+}
+.cl-formFieldInput:focus,
+.cl-otpCodeFieldInput:focus {
+  border-color: #00d4aa !important;
+  box-shadow: 0 0 0 2px rgba(0,212,170,0.15) !important;
+}
+.cl-formButtonPrimary {
+  background: linear-gradient(135deg, #00d4aa, #0ea5e9) !important;
+  color: #fff !important;
+}
+.cl-formButtonPrimary:hover { opacity: 0.9 !important; }
+.cl-footerActionLink,
+.cl-formResendCodeLink,
+.cl-identityPreviewEditButton {
+  color: #00d4aa !important;
+}
+.cl-socialButtonsBlockButton {
+  background-color: #050a0e !important;
+  border-color: #1a2d3d !important;
+  color: #e8f0f7 !important;
+}
+.cl-socialButtonsBlockButton:hover { background-color: #1a2d3d !important; }
+.cl-socialButtonsBlockButtonText { color: #e8f0f7 !important; }
+.cl-dividerLine { background-color: #1a2d3d !important; }
+.cl-internal-b3fm6y { background-color: #0d1821 !important; }
+.cl-formFieldInputShowPasswordButton svg { color: #64748b !important; }
+.cl-formFieldInput::placeholder,
+.cl-otpCodeFieldInput::placeholder {
+  color: #64748b !important;
+  opacity: 1 !important;
+}
+
+/* Live ticker scroll animation */
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-scroll {
+  animation: ticker-scroll 55s linear infinite;
+  will-change: transform;
+}
+.ticker-scroll:hover {
+  animation-play-state: paused;
+}
