@@ -187,7 +187,7 @@ export default function AdminDashboard({ grouped, delivered, totalPending }: Pro
               <TrendingUp className="w-4 h-4 text-white" strokeWidth={2.5} />
             </div>
             <span className="font-bold text-sm">
-              <span className="gradient-text">TheChart</span>
+              <span className="gradient-text">TheCrypto</span>
               <span className="text-[#e8f0f7]">Scope</span>
               <span className="text-[#475569] ml-2">Admin</span>
             </span>

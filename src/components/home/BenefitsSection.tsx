@@ -64,7 +64,7 @@ export default function BenefitsSection() {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00d4aa]/10 border border-[#00d4aa]/20 text-[#00d4aa] text-xs font-medium mb-4"
           >
-            Why TheChartScope
+            Why TheCryptoScope
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

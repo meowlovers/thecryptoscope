@@ -31,7 +31,7 @@ export default function Footer() {
                 <TrendingUp className="w-4 h-4 text-white" strokeWidth={2.5} />
               </div>
               <span className="font-bold text-lg tracking-tight">
-                <span className="gradient-text">TheChart</span>
+                <span className="gradient-text">TheCrypto</span>
                 <span className="text-[#e8f0f7]">Scope</span>
               </span>
             </Link>
@@ -89,10 +89,10 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-[#1a2d3d] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[#64748b] text-sm">
-            © {new Date().getFullYear()} TheChartScope. All rights reserved.
+            © {new Date().getFullYear()} TheCryptoScope. All rights reserved.
           </p>
           <p className="text-[#475569] text-xs text-center sm:text-right max-w-md">
-            TheChartScope provides market analysis for informational purposes only.
+            TheCryptoScope provides market analysis for informational purposes only.
             This is not financial advice. Always do your own research.
           </p>
         </div>

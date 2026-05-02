@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export const metadata: Metadata = { title: "Privacy Policy — TheChartScope" };
+export const metadata: Metadata = { title: "Privacy Policy — TheCryptoScope" };
 
 export default function PrivacyPage() {
   const sections = [
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
     {
       title: "Your Rights",
       content:
-        "You have the right to request access to, correction of, or deletion of your personal data held by TheChartScope. Contact us at privacy@thechartscope.com to exercise these rights.",
+        "You have the right to request access to, correction of, or deletion of your personal data held by TheCryptoScope. Contact us at privacy@thecryptoscope.com to exercise these rights.",
     },
   ];
 

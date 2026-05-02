@@ -5,8 +5,8 @@ import ContactForm from "@/components/contact/ContactForm";
 import { Mail, Clock, MessageCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact — TheChartScope",
-  description: "Get in touch with the TheChartScope team for support or inquiries.",
+  title: "Contact — TheCryptoScope",
+  description: "Get in touch with the TheCryptoScope team for support or inquiries.",
 };
 
 export default function ContactPage() {
@@ -36,13 +36,13 @@ export default function ContactPage() {
                 {
                   icon: Mail,
                   title: "Email Support",
-                  value: "support@thechartscope.com",
+                  value: "support@thecryptoscope.com",
                   sub: "We respond within 2–4 hours",
                 },
                 {
                   icon: MessageCircle,
                   title: "Telegram",
-                  value: "@TheChartScopeSupport",
+                  value: "@TheCryptoScopeSupport",
                   sub: "For quick questions & order updates",
                 },
                 {

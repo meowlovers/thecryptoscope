@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       pay_currency: "usdtbsc",           // USDT on BEP20 (BSC)
       ipn_callback_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/topup/webhook`,
       order_id: user.id,                // our internal user id
-      order_description: `TheChartScope credit top-up — ${amount} USDT`,
+      order_description: `TheCryptoScope credit top-up — ${amount} USDT`,
     }),
   });
 

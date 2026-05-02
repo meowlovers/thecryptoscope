@@ -15,7 +15,7 @@ export default function SignInPage() {
           <TrendingUp className="w-5 h-5 text-white" strokeWidth={2.5} />
         </div>
         <span className="font-bold text-xl tracking-tight">
-          <span className="bg-gradient-to-r from-[#00d4aa] to-[#0ea5e9] bg-clip-text text-transparent">TheChart</span>
+          <span className="bg-gradient-to-r from-[#00d4aa] to-[#0ea5e9] bg-clip-text text-transparent">TheCrypto</span>
           <span className="text-[#e8f0f7]">Scope</span>
         </span>
       </Link>

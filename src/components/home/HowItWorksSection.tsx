@@ -56,7 +56,7 @@ export default function HowItWorksSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl font-bold text-[#e8f0f7] mb-4"
           >
-            How TheChartScope Works
+            How TheCryptoScope Works
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

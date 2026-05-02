@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { CheckCircle, Clock, Mail, ArrowRight, BarChart2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Order Confirmed — TheChartScope",
+  title: "Order Confirmed — TheCryptoScope",
   description: "Your analysis order has been confirmed. Expect delivery within 24–48 hours.",
 };
 
@@ -136,7 +136,7 @@ export default async function OrderSuccessPage({ searchParams }: PageProps) {
           <p className="text-[#475569] text-xs mt-6">
             Questions? Contact us at{" "}
             <Link href="/contact" className="text-[#00d4aa] hover:underline">
-              support@thechartscope.com
+              support@thecryptoscope.com
             </Link>
           </p>
         </div>

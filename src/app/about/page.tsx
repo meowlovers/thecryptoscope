@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 import { TrendingUp, Target, Eye, Users, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us — TheChartScope",
+  title: "About Us — TheCryptoScope",
   description:
-    "Learn about TheChartScope's team, methodology, and mission to deliver institutional-grade crypto analysis to everyone.",
+    "Learn about TheCryptoScope's team, methodology, and mission to deliver institutional-grade crypto analysis to everyone.",
 };
 
 const values = [
@@ -88,7 +88,7 @@ export default function AboutPage() {
               Analysis You Can Actually Trust
             </h1>
             <p className="text-[#64748b] text-lg max-w-2xl mx-auto leading-relaxed">
-              TheChartScope was founded by a group of professional traders and analysts
+              TheCryptoScope was founded by a group of professional traders and analysts
               frustrated by the sea of low-quality, signal-pumping services in the
               crypto space. We believe serious market participants deserve serious
               research — at an accessible price.
@@ -106,7 +106,7 @@ export default function AboutPage() {
               </h2>
               <p className="text-[#64748b] text-base leading-relaxed max-w-2xl">
                 Institutional-grade research has historically been reserved for hedge funds
-                and high-net-worth investors. TheChartScope changes that. From just $9, any
+                and high-net-worth investors. TheCryptoScope changes that. From just $9, any
                 trader — from beginner to professional — can access the same depth of
                 analysis that institutional desks use to make decisions.
               </p>
@@ -175,7 +175,7 @@ export default function AboutPage() {
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl font-bold text-[#e8f0f7]">The Team</h2>
               <p className="text-[#64748b] mt-2 max-w-lg mx-auto">
-                TheChartScope is a small, focused team of professional traders and analysts
+                TheCryptoScope is a small, focused team of professional traders and analysts
                 operating across multiple time zones.
               </p>
             </div>

@@ -43,7 +43,7 @@ export default function Navbar() {
               <TrendingUp className="w-4 h-4 text-white" strokeWidth={2.5} />
             </div>
             <span className="font-bold text-lg tracking-tight">
-              <span className="gradient-text">TheChart</span>
+              <span className="gradient-text">TheCrypto</span>
               <span className="text-[#e8f0f7]">Scope</span>
             </span>
           </Link>

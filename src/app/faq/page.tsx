@@ -6,8 +6,8 @@ import FAQAccordion from "@/components/faq/FAQAccordion";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "FAQ — TheChartScope",
-  description: "Frequently asked questions about TheChartScope's crypto market analysis service.",
+  title: "FAQ — TheCryptoScope",
+  description: "Frequently asked questions about TheCryptoScope's crypto market analysis service.",
 };
 
 const faqCategories = [
@@ -15,14 +15,14 @@ const faqCategories = [
     category: "About the Service",
     faqs: [
       {
-        question: "What exactly does TheChartScope provide?",
+        question: "What exactly does TheCryptoScope provide?",
         answer:
-          "TheChartScope provides professional, in-depth market analysis of cryptocurrency trading pairs. Each report covers technical chart analysis (patterns, indicators, support/resistance), fundamental context, and sentiment. We do NOT provide trading signals or financial advice — only thorough, educational analysis.",
+          "TheCryptoScope provides professional, in-depth market analysis of cryptocurrency trading pairs. Each report covers technical chart analysis (patterns, indicators, support/resistance), fundamental context, and sentiment. We do NOT provide trading signals or financial advice — only thorough, educational analysis.",
       },
       {
         question: "Is this financial advice?",
         answer:
-          "No. TheChartScope's reports are for educational and informational purposes only. Nothing in our analysis constitutes financial, investment, or trading advice. Always conduct your own research and consult a qualified financial advisor before making investment decisions.",
+          "No. TheCryptoScope's reports are for educational and informational purposes only. Nothing in our analysis constitutes financial, investment, or trading advice. Always conduct your own research and consult a qualified financial advisor before making investment decisions.",
       },
       {
         question: "Do you guarantee profits or specific outcomes?",
@@ -123,7 +123,7 @@ export default function FAQPage() {
               Frequently Asked Questions
             </h1>
             <p className="text-[#64748b] text-base max-w-xl mx-auto">
-              Everything you need to know about TheChartScope and our analysis service.
+              Everything you need to know about TheCryptoScope and our analysis service.
               Can&apos;t find your answer?{" "}
               <Link href="/contact" className="text-[#00d4aa] hover:underline">
                 Contact us

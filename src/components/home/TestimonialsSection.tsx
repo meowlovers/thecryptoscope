@@ -40,7 +40,7 @@ const testimonials = [
     name: "James T.",
     role: "Crypto Enthusiast",
     content:
-      "I've bought analysis services for $50+ and gotten less than this. At $9, TheChartScope is an absolute steal. Already ordered three times.",
+      "I've bought analysis services for $50+ and gotten less than this. At $9, TheCryptoScope is an absolute steal. Already ordered three times.",
     rating: 5,
     pair: "ADAUSDT",
   },
@@ -48,7 +48,7 @@ const testimonials = [
     name: "Chen W.",
     role: "Swing Trader",
     content:
-      "The on-chain and sentiment section was eye-opening. I use this to build my own thesis, not to copy trades. TheChartScope perfectly supports that.",
+      "The on-chain and sentiment section was eye-opening. I use this to build my own thesis, not to copy trades. TheCryptoScope perfectly supports that.",
     rating: 5,
     pair: "DOTUSDT",
   },
@@ -86,7 +86,7 @@ export default function TestimonialsSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-[#64748b] text-lg max-w-xl mx-auto"
           >
-            Hundreds of traders trust TheChartScope for their market research.
+            Hundreds of traders trust TheCryptoScope for their market research.
           </motion.p>
         </div>
 

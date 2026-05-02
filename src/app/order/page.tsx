@@ -5,7 +5,7 @@ import OrderForm from "@/components/order/OrderForm";
 import { ShieldCheck, Clock, BarChart2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Order Analysis — TheChartScope",
+  title: "Order Analysis — TheCryptoScope",
   description:
     "Request a professional technical or fundamental analysis of any cryptocurrency trading pair. From $9, delivered in 24–48 hours.",
 };
@@ -52,7 +52,7 @@ export default async function OrderPage({ searchParams }: PageProps) {
               {/* Trust signals */}
               <div className="bg-[#0d1821] border border-[#1a2d3d] rounded-2xl p-5">
                 <p className="text-[#e8f0f7] font-semibold text-sm mb-4">
-                  Why trust TheChartScope?
+                  Why trust TheCryptoScope?
                 </p>
                 <div className="space-y-4">
                   {[
@@ -111,7 +111,7 @@ export default async function OrderPage({ searchParams }: PageProps) {
               {/* Disclaimer */}
               <div className="bg-[#0d1821] border border-[#1a2d3d] rounded-xl p-4">
                 <p className="text-[#475569] text-xs leading-relaxed">
-                  <strong className="text-[#64748b]">Disclaimer:</strong> TheChartScope
+                  <strong className="text-[#64748b]">Disclaimer:</strong> TheCryptoScope
                   provides educational market analysis only. This is not financial
                   advice. Always do your own research before making investment decisions.
                 </p>
