@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   TrendingUp, CheckCircle, Clock,
   FileText, LogOut,
-  Ticket, Mail, ChevronRight, X
+  Ticket, Mail, ChevronRight, X, DollarSign, Loader2
 } from "lucide-react";
 import AnalysisEditor from "./AnalysisEditor";
 
@@ -288,7 +288,76 @@ export default function AdminDashboard({ grouped, delivered, totalPending, ticke
             )}
           </div>
         )}
+
+        {/* Manual Credit Tool */}
+        <ManualCredit />
       </div>
     </main>
+  );
+}
+
+function ManualCredit() {
+  const [email, setEmail] = useState("");
+  const [amount, setAmount] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState<{ type: "ok" | "err"; text: string } | null>(null);
+
+  async function handleCredit() {
+    if (!email || !amount) return;
+    setLoading(true);
+    setMsg(null);
+    const res = await fetch("/api/admin/credit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, amount: parseFloat(amount) }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      setMsg({ type: "ok", text: `✓ Added $${amount} to ${email}` });
+      setEmail(""); setAmount("");
+    } else {
+      setMsg({ type: "err", text: data.error ?? "Failed" });
+    }
+    setLoading(false);
+  }
+
+  return (
+    <div className="mt-10 bg-[#0d1821] border border-[#1a2d3d] rounded-2xl p-5">
+      <div className="flex items-center gap-2 mb-4">
+        <DollarSign className="w-4 h-4 text-[#00d4aa]" />
+        <p className="text-[#e8f0f7] font-semibold text-sm">Manual Credit</p>
+        <span className="text-[10px] text-[#475569] bg-[#1a2d3d] px-2 py-0.5 rounded-md">Admin only</span>
+      </div>
+      <div className="flex gap-3 flex-wrap">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="user@email.com"
+          className="flex-1 min-w-[180px] bg-[#050a0e] border border-[#1a2d3d] rounded-xl px-4 py-2.5 text-[#e8f0f7] text-sm placeholder-[#475569] focus:outline-none focus:border-[#00d4aa]/50 transition-colors"
+        />
+        <input
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="Amount (USDT)"
+          min="1"
+          className="w-40 bg-[#050a0e] border border-[#1a2d3d] rounded-xl px-4 py-2.5 text-[#e8f0f7] text-sm placeholder-[#475569] focus:outline-none focus:border-[#00d4aa]/50 transition-colors"
+        />
+        <button
+          onClick={handleCredit}
+          disabled={loading || !email || !amount}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00d4aa] to-[#0ea5e9] text-white text-sm font-semibold hover:opacity-90 transition-all disabled:opacity-40"
+        >
+          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <DollarSign className="w-4 h-4" />}
+          Add Credits
+        </button>
+      </div>
+      {msg && (
+        <p className={`mt-3 text-xs font-medium ${msg.type === "ok" ? "text-emerald-400" : "text-red-400"}`}>
+          {msg.text}
+        </p>
+      )}
+    </div>
   );
 }
