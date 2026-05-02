@@ -39,13 +39,13 @@ export async function POST(req: Request) {
     },
   });
 
-  // Create a notification for each affected user
+  // Create a notification for each affected user (link includes orderId to auto-open analysis)
   await prisma.notification.createMany({
     data: orders.map((o) => ({
       userId: o.userId,
       title: `Your ${o.pair} analysis is ready`,
-      message: `Your ${o.analysisType} analysis for ${o.pair} has been delivered. View it in your dashboard.`,
-      link: "/dashboard",
+      message: `Your ${o.analysisType} analysis for ${o.pair} has been delivered. Click to view it now.`,
+      link: `/dashboard?openOrder=${o.id}`,
     })),
   });
 

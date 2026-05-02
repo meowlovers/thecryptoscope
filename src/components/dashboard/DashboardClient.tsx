@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Wallet, Plus, ArrowUpRight, ArrowDownLeft, Clock, CheckCircle, Package, TrendingUp, Download } from "lucide-react";
 import AnalysisView from "./AnalysisView";
@@ -54,6 +55,8 @@ function formatDate(d: string | Date) {
 
 export default function DashboardClient({ balance, transactions, orders, email }: Props) {
   const [tab, setTab] = useState<"orders" | "transactions">("orders");
+  const searchParams = useSearchParams();
+  const openOrderId = searchParams.get("openOrder");
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
@@ -154,7 +157,7 @@ export default function DashboardClient({ balance, transactions, orders, email }
                       {ORDER_STATUS_LABEL[order.status]}
                     </span>
                     {order.status === "DELIVERED" && order.analysisId ? (
-                      <AnalysisView orderId={order.id} pair={order.pair} />
+                      <AnalysisView orderId={order.id} pair={order.pair} autoOpen={openOrderId === order.id} />
                     ) : order.status === "DELIVERED" && order.pdfUrl ? (
                       <a
                         href={order.pdfUrl}

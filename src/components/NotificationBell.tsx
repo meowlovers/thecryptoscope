@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Bell, TrendingUp, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Notification {
   id: string;
@@ -28,6 +29,7 @@ export default function NotificationBell() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   const unread = notifications.filter((n) => !n.read).length;
 
@@ -97,7 +99,11 @@ export default function NotificationBell() {
                 notifications.map((n) => (
                   <div
                     key={n.id}
-                    className={`px-4 py-3 border-b border-[#1a2d3d] last:border-0 ${!n.read ? "bg-[#00d4aa]/5" : ""}`}
+                    onClick={() => {
+                      setOpen(false);
+                      if (n.link) router.push(n.link);
+                    }}
+                    className={`px-4 py-3 border-b border-[#1a2d3d] last:border-0 cursor-pointer hover:bg-[#1a2d3d]/50 transition-colors ${!n.read ? "bg-[#00d4aa]/5" : ""}`}
                   >
                     <div className="flex gap-3 items-start">
                       <div className="w-7 h-7 rounded-lg bg-[#00d4aa]/10 border border-[#00d4aa]/20 flex items-center justify-center shrink-0 mt-0.5">

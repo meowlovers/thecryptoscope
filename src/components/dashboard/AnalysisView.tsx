@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { X, Loader2, TrendingUp } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X, Loader2, TrendingUp, ZoomIn } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Section =
@@ -19,13 +19,20 @@ interface Analysis {
 interface Props {
   orderId: string;
   pair: string;
+  autoOpen?: boolean;
 }
 
-export default function AnalysisView({ orderId, pair }: Props) {
+export default function AnalysisView({ orderId, pair, autoOpen = false }: Props) {
   const [open, setOpen] = useState(false);
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
+
+  // Auto-open if triggered from notification link
+  useEffect(() => {
+    if (autoOpen) openAnalysis();
+  }, [autoOpen]);
 
   async function openAnalysis() {
     setOpen(true);
@@ -51,6 +58,7 @@ export default function AnalysisView({ orderId, pair }: Props) {
         <TrendingUp className="w-3 h-3" /> View Analysis
       </button>
 
+      {/* Analysis Modal */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -65,9 +73,9 @@ export default function AnalysisView({ orderId, pair }: Props) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.97 }}
               transition={{ duration: 0.25 }}
-              className="relative w-full max-w-2xl bg-[#0d1821] border border-[#1a2d3d] rounded-2xl shadow-2xl"
+              className="relative w-full max-w-2xl bg-[#0d1821] border border-[#1a2d3d] rounded-2xl shadow-2xl mb-8"
             >
-              {/* Modal header */}
+              {/* Header */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-[#1a2d3d] sticky top-0 bg-[#0d1821] rounded-t-2xl z-10">
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 rounded-lg bg-[#00d4aa]/10 border border-[#00d4aa]/20 flex items-center justify-center">
@@ -123,11 +131,22 @@ export default function AnalysisView({ orderId, pair }: Props) {
                       if (section.type === "image") {
                         return (
                           <div key={i} className="rounded-xl overflow-hidden border border-[#1a2d3d]">
-                            <img
-                              src={section.url}
-                              alt={section.caption ?? "Chart"}
-                              className="w-full object-contain"
-                            />
+                            <div
+                              className="relative group cursor-zoom-in"
+                              onClick={() => setLightboxUrl(section.url)}
+                            >
+                              <img
+                                src={section.url}
+                                alt={section.caption ?? "Chart"}
+                                className="w-full object-contain"
+                              />
+                              {/* Zoom hint overlay */}
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                                <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 rounded-full p-2">
+                                  <ZoomIn className="w-5 h-5 text-white" />
+                                </div>
+                              </div>
+                            </div>
                             {section.caption && (
                               <p className="text-[#475569] text-xs text-center py-2 bg-[#050a0e]">
                                 {section.caption}
@@ -142,6 +161,36 @@ export default function AnalysisView({ orderId, pair }: Props) {
                 )}
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Fullscreen Image Lightbox */}
+      <AnimatePresence>
+        {lightboxUrl && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 backdrop-blur-md p-4 cursor-zoom-out"
+            onClick={() => setLightboxUrl(null)}
+          >
+            <button
+              onClick={() => setLightboxUrl(null)}
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+            <motion.img
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              src={lightboxUrl}
+              alt="Full size chart"
+              className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
           </motion.div>
         )}
       </AnimatePresence>
